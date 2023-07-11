@@ -1,0 +1,27 @@
+function findMaxLength(nums) {
+  const countMap = {};
+  let maxLen = 0;
+  let sum = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    sum += nums[i] === 0 ? -1 : 1;
+
+    if (sum === 0) {
+      maxLen = i + 1;
+    } else if (countMap.hasOwnProperty(sum)) {
+      maxLen = Math.max(maxLen, i - countMap[sum]);
+    } else {
+      countMap[sum] = i;
+    }
+  }
+
+  return maxLen;
+}
+
+// Test case
+const nums = [0, 1];
+const maxLength = findMaxLength(nums);
+console.log(maxLength); // Output: 2
+
+
+In the given example, the output will be 2 as the longest contiguous subarray with an equal number of 0s and 1s in the array [0, 1] is the entire array itself.
