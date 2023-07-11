@@ -1,0 +1,25 @@
+function minProductSum(nums1, nums2) {
+  nums1.sort((a, b) => a - b);
+  nums2.sort((a, b) => a - b);
+
+  let minProductSum = 0;
+
+  for (let i = 0; i < nums1.length; i++) {
+    minProductSum += nums1[i] * nums2[nums2.length - i - 1];
+  }
+
+  return minProductSum;
+}
+
+// Test case
+const nums1 = [5, 3, 4, 2];
+const nums2 = [4, 2, 2, 5];
+const minProduct = minProductSum(nums1, nums2);
+console.log(minProduct); // Output: 40
+
+
+In the given example, the output will be 40 as the minimum product sum is achieved when nums1 is rearranged to [3, 5, 4, 2]. The product sum of [3, 5, 4, 2] and [4, 2, 2, 5] is calculated as follows:
+
+3 * 4 + 5 * 2 + 4 * 2 + 2 * 5 = 40.
+
+Thus, the minimum product sum is 40.
