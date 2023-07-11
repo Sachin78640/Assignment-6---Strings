@@ -1,0 +1,27 @@
+function findOriginalArray(changed) {
+  if (changed.length % 2 !== 0) {
+    return [];
+  }
+
+  const counts = {};
+  for (const num of changed) {
+    counts[num] = (counts[num] || 0) + 1;
+  }
+
+  const result = [];
+  for (const num of changed) {
+    if (counts[num] === 0 || !counts[num / 2]) {
+      return [];
+    }
+    counts[num]--;
+    counts[num / 2]--;
+    result.push(num / 2);
+  }
+
+  return result;
+}
+
+// Test case
+const changed = [1, 3, 4, 2, 6, 8];
+const original = findOriginalArray(changed);
+console.log(original); // Output: [1, 3, 4]
