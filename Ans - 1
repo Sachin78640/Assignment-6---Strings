@@ -1,0 +1,35 @@
+function reconstructPermutation(s) {
+  const n = s.length;
+  let low = 0;
+  let high = n;
+  const perm = [];
+
+  for (const ch of s) {
+    if (ch === 'I') {
+      perm.push(low);
+      low++;
+    } else if (ch === 'D') {
+      perm.push(high);
+      high--;
+    }
+  }
+
+  perm.push(low);
+
+  return perm;
+}
+
+// Test case
+const s = 'IDID';
+const perm = reconstructPermutation(s);
+console.log(perm); // Output: [0, 4, 1, 3, 2]
+
+
+In the given example, the output will be [0, 4, 1, 3, 2] as the given string s is "IDID". According to the rules, the corresponding permutation can be reconstructed as follows:
+
+s[0] = 'I': Append low = 0 to perm, and increment low to 1. Current perm: [0].
+s[1] = 'D': Append high = 4 to perm, and decrement high to 3. Current perm: [0, 4].
+s[2] = 'I': Append low = 1 to perm, and increment low to 2. Current perm: [0, 4, 1].
+s[3] = 'D': Append high = 3 to perm, and decrement high to 2. Current perm: [0, 4, 1, 3].
+Append the remaining low = 2 to perm. Final perm: [0, 4, 1, 3, 2].
+Thus, the reconstructed permutation is [0, 4, 1, 3, 2].
